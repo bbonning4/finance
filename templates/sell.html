@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <h>{{ success }}</h>
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select id="symbol" name="symbol">
+                <option disabled selected>Symbol</option>
+                {% for symbol in symbols %}
+                    <option>{{ symbol.symbol }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares" required type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+    <br>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{ symbol }}</td>
+                <td>{{ name }}</td>
+                <td>{{ price }}</td>
+                <td>{{ shares }}</td>
+                <td>{{ total }}</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td class="fw-bold text-end" colspan="4">Cash</td>
+                    <td>{{ available }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold text-end" colspan="4">TOTAL</td>
+                    <td>{{ total_available }}</td>
+                </tr>
+            </tfoot>
+        </tbody>
+    </table>
+{% endblock %}
